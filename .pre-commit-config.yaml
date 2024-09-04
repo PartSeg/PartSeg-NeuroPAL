@@ -1,0 +1,51 @@
+default_language_version:
+    python: python3.8
+
+repos:
+-   repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.6.0
+    hooks:
+    - id: check-json
+    - id: check-yaml
+    - id: check-toml
+    - id: check-merge-conflict
+    - id: end-of-file-fixer
+    - id: trailing-whitespace
+      exclude: .*\.md
+    - id: debug-statements
+    - id: mixed-line-ending
+-   repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.5.7
+    hooks:
+      - id: ruff
+      - id: ruff-format
+-   repo: https://github.com/pre-commit/pygrep-hooks
+    rev: v1.10.0
+    hooks:
+    -   id: rst-backticks
+-   repo: https://github.com/executablebooks/mdformat
+    rev: 0.7.17  # Use the ref you want to point at
+    hooks:
+    - id: mdformat
+      exclude: TEST_FAIL_TEMPLATE.md|bug_report.md|feature_request.md
+      args: ["--number"]
+      additional_dependencies:
+          - mdformat-gfm
+          - mdformat-black
+          - mdformat-toc
+
+-   repo: https://github.com/pre-commit/mirrors-mypy
+    rev: 'v1.11.1'  # Use the sha / tag you want to point at
+    hooks:
+    -   id: mypy
+
+-   repo: https://github.com/codespell-project/codespell
+    rev: v2.3.0
+    hooks:
+    - id: codespell
+      additional_dependencies:
+      - tomli
+
+
+ci:
+    autoupdate_commit_msg: 'ci: [pre-commit.ci] pre-commit autoupdate'

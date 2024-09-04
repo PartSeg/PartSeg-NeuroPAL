@@ -1,0 +1,59 @@
+[build-system]
+requires = ["hatchling", "hatch-vcs"]
+build-backend = "hatchling.build"
+
+[project]
+name = "partseg-neuropal"
+dynamic = ["version"]
+description = 'PartSeg toolset for NeuroPAL data '
+readme = "README.md"
+requires-python = ">=3.9"
+license = "BSD-3-Clause"
+keywords = []
+authors = [
+  { name = "Grzegorz Bokota", email = "g.bokota@uw.edu.pl" },
+]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: Implementation :: CPython",
+  "Programming Language :: Python :: Implementation :: PyPy",
+]
+dependencies = [
+  "numpy>=1.22.2"
+]
+
+[project.urls]
+Documentation = "https://github.com/PartSeg/PartSeg-NeuroPAL#readme"
+Issues = "https://github.com/PartSeg/PartSeg-NeuroPAL/issues"
+Source = "https://github.com/PartSeg/PartSeg-NeuroPAL"
+
+[tool.hatch.envs.types]
+extra-dependencies = [
+  "mypy>=1.0.0",
+]
+[tool.hatch.envs.types.scripts]
+check = "mypy --install-types --non-interactive {args:src/partseg_neuropal tests}"
+
+[tool.coverage.run]
+source_pkgs = ["partseg_neuropal", "tests"]
+branch = true
+parallel = true
+omit = [
+  "src/partseg_neuropal/__about__.py",
+]
+
+[tool.coverage.paths]
+partseg_neuropal = ["src/partseg_neuropal", "*/partseg-neuropal/src/partseg_neuropal"]
+tests = ["tests", "*/partseg-neuropal/tests"]
+
+[tool.coverage.report]
+exclude_lines = [
+  "no cov",
+  "if __name__ == .__main__.:",
+  "if TYPE_CHECKING:",
+]
