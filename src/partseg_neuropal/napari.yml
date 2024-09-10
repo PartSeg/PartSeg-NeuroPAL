@@ -1,0 +1,10 @@
+name: PartSeg-NeuroPAL
+schema_version: 0.1.0
+contributions:
+  commands:
+    - id: PartSeg-NeuroPAL.combine_channels
+      title: Combine channels
+      python_name: partseg_neuropal.napari_plugins:combine_channels
+  widgets:
+    - command: PartSeg-NeuroPAL.combine_channels
+      display_name: Combine channels

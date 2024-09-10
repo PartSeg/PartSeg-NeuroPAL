@@ -24,13 +24,20 @@ classifiers = [
   "Programming Language :: Python :: Implementation :: PyPy",
 ]
 dependencies = [
-  "numpy>=1.22.2"
+  "numpy>=1.22.2",
+  "npe2>=0.7.7"
 ]
 
 [project.urls]
 Documentation = "https://github.com/PartSeg/PartSeg-NeuroPAL#readme"
 Issues = "https://github.com/PartSeg/PartSeg-NeuroPAL/issues"
 Source = "https://github.com/PartSeg/PartSeg-NeuroPAL"
+
+[opinions.entry-points."napari.manifest"]
+partseg_neuropal = "partseg_neuropal:napari.yml"
+
+[tool.hatch.version]
+source = "vcs"
 
 [tool.hatch.envs.types]
 extra-dependencies = [
