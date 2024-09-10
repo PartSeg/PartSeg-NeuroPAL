@@ -33,7 +33,7 @@ Documentation = "https://github.com/PartSeg/PartSeg-NeuroPAL#readme"
 Issues = "https://github.com/PartSeg/PartSeg-NeuroPAL/issues"
 Source = "https://github.com/PartSeg/PartSeg-NeuroPAL"
 
-[opinions.entry-points."napari.manifest"]
+[project.entry-points."napari.manifest"]
 partseg_neuropal = "partseg_neuropal:napari.yml"
 
 [tool.hatch.version]
