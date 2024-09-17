@@ -1,11 +1,10 @@
-from __future__ import annotations
 from enum import Enum, auto
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Annotated
 import numpy as np
 
 if TYPE_CHECKING:
-    from napari.layers import Image
-    from npe2.types import LayerData
+    import napari
+    import napari.types
 
 
 class CombineMode(Enum):
@@ -13,10 +12,15 @@ class CombineMode(Enum):
     max = auto()
 
 
-def combine_channels(channels: list[Image], mode: CombineMode) -> LayerData:
+def combine_channels(
+    channels: Annotated[list["napari.layers.Image"], {"layout": "vertical"}],
+    mode: CombineMode,
+) -> "napari.types.LayerDataTuple":
     if mode == CombineMode.add:
-        return np.sum([channel.data for channel in channels], axis=0)
+        res = np.sum([channel.data for channel in channels], axis=0)
     elif mode == CombineMode.max:
-        return np.max([channel.data for channel in channels], axis=0)
+        res = np.max([channel.data for channel in channels], axis=0)
     else:
         raise ValueError(f"Invalid mode: {mode}")
+    print(f"Combined {len(channels)} channels with mode {mode}")
+    return res, {"name": "Combined", "scale": channels[0].scale}, "image"

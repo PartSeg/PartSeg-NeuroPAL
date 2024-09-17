@@ -8,3 +8,4 @@ contributions:
   widgets:
     - command: partseg-neuropal.combine_channels
       display_name: Combine channels
+      autogenerate: true
